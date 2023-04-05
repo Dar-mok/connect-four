@@ -7,11 +7,11 @@
  * board fills (tie)
  */
 
-var WIDTH = 7;
-var HEIGHT = 6;
+const WIDTH = 7;
+const HEIGHT = 6;
 
-var currPlayer = 1; // active player: 1 or 2
-var board = []; // array of rows, each row is array of cells  (board[y][x])
+let currPlayer = 1; // active player: 1 or 2
+const board = []; // array of rows, each row is array of cells  (board[y][x])
 
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
@@ -19,24 +19,33 @@ var board = []; // array of rows, each row is array of cells  (board[y][x])
 
 function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
-
   // loop up 5 to create 6 rows total
-    //loop up to 6 to create an array of 7 gamebaord cells
+  //loop up to 6 to create an array of 7 gamebaord cells
+  for (let i = 0; i < HEIGHT; i ++) {
+    board.push([]);
+    for (let j = 0; j < WIDTH; j ++) {
+      board[i].push(null);
+    }
+  }
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
-  var htmlBoard = document.getElementById('board');
+  const htmlBoard = document.getElementById('board');
 
   // TODO: add comment for this code
-  var top = document.createElement("tr");
+  // This creates the table row in which the player's choices of cells will
+  // be placed.
+  const top = document.createElement("tr");
   top.setAttribute("id", "column-top");
   top.addEventListener("click", handleClick);
 
   // TODO: add comment for this code
-  for (var x = 0; x < WIDTH; x++) {
-    var headCell = document.createElement("td");
+  // This creates the cells for the player to select which column they
+  // want to place their piece.
+  for (let x = 0; x < WIDTH; x++) {
+    const headCell = document.createElement("td");
     headCell.setAttribute("id", `top-${x}`);
     top.append(headCell);
   }
@@ -45,20 +54,20 @@ function makeHtmlBoard() {
   // dynamically creates the main part of html board
   // uses HEIGHT to create table rows
   // uses WIDTH to create table cells for each row
-  for (var y = 0; y < HEIGHT; y++) {
+  for (let y = 0; y < HEIGHT; y++) {
     // TODO: Create a table row element and assign to a "row" variable
-
-    for (var x = 0; x < WIDTH; x++) {
+    const row = document.createElement("tr")
+    for (let x = 0; x < WIDTH; x++) {
       // TODO: Create a table cell element and assign to a "cell" variable
-
+      const cell = document.createElement("td")
       // TODO: add an id, c-y-x, to the above table cell element
       // you'll use this later, so make sure you use c-y-x
-
+      cell.setAttribute("id", `c-${y}-${x}`)
       // TODO: append the table cell to the table row
-
+      row.append(cell)
     }
     // TODO: append the row to the html board
-
+    htmlBoard.append(row)
   }
 }
 
