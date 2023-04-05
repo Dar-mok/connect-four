@@ -1,0 +1,6 @@
+have a div that contains the entire board game
+
+in the javascript file, create a loop, that on each itteration, creates a div in the board
+
+create variable for rows and columns
+
