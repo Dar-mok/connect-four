@@ -21,9 +21,9 @@ function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
   // loop up 5 to create 6 rows total
   //loop up to 6 to create an array of 7 gamebaord cells
-  for (let i = 0; i < HEIGHT; i ++) {
+  for (let i = 0; i < HEIGHT; i++) {
     board.push([]);
-    for (let j = 0; j < WIDTH; j ++) {
+    for (let j = 0; j < WIDTH; j++) {
       board[i].push(null);
     }
   }
@@ -56,18 +56,18 @@ function makeHtmlBoard() {
   // uses WIDTH to create table cells for each row
   for (let y = 0; y < HEIGHT; y++) {
     // TODO: Create a table row element and assign to a "row" variable
-    const row = document.createElement("tr")
+    const row = document.createElement("tr");
     for (let x = 0; x < WIDTH; x++) {
       // TODO: Create a table cell element and assign to a "cell" variable
-      const cell = document.createElement("td")
+      const cell = document.createElement("td");
       // TODO: add an id, c-y-x, to the above table cell element
       // you'll use this later, so make sure you use c-y-x
-      cell.setAttribute("id", `c-${y}-${x}`)
+      cell.setAttribute("id", `c-${y}-${x}`);
       // TODO: append the table cell to the table row
-      row.append(cell)
+      row.append(cell);
     }
     // TODO: append the row to the html board
-    htmlBoard.append(row)
+    htmlBoard.append(row);
   }
 }
 
@@ -82,14 +82,13 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
+  console.log("placeInTable", x, y);
   const currentPiece = document.createElement("div");
 
-  currentPiece.className = "piece";
-  currentPiece.className = `p${currPlayer}`;
+  currentPiece.classList.add(`p${currPlayer}`, "piece");
 
   const pieceDestination = document.getElementById(`c-${y}-${x}`);
-  pieceDestination.appendChild(currentPiece);
-
+  pieceDestination.append(currentPiece);
 }
 
 /** endGame: announce game end */
@@ -121,9 +120,19 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
+  const isNull = (currentValue) => currentValue === null;
+  for (let i = 0; i < HEIGHT; i++) {
+    if (board[i].every(!isNull)) {
 
+    }
+  }
   // switch players
   // TODO: switch currPlayer 1 <-> 2
+  if (currPlayer === 1) {
+    currPlayer = 2;
+  } else {
+    currPlayer = 1;
+  }
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
