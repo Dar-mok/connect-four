@@ -82,6 +82,14 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
+  const currentPiece = document.createElement("div");
+
+  currentPiece.className = "piece";
+  currentPiece.className = `p${currPlayer}`;
+
+  const pieceDestination = document.getElementById(`c-${y}-${x}`);
+  pieceDestination.appendChild(currentPiece);
+
 }
 
 /** endGame: announce game end */
@@ -94,7 +102,7 @@ function endGame(msg) {
 
 function handleClick(evt) {
   // get x from ID of clicked cell
-  var x = +evt.target.id;
+  const x = Number(evt.target.id.slice("top-".length));
 
   // get next spot in column (if none, ignore click)
   var y = findSpotForCol(x);
